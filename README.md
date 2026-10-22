@@ -17,3 +17,17 @@ npm run dev
 ```
 
 A página inicial apresenta os seis conceitos em cartões, sem navegação adicional ou camadas de interface desnecessárias.
+
+## Projeto de turismo: Província de São Pedro
+
+O projeto turístico é uma aplicação React independente dentro da pasta [`provincia-de-sao-pedro`](./provincia-de-sao-pedro/). Apresenta destinos do Rio Grande do Sul com busca, filtros, favoritos e detalhes, aplicando os mesmos conceitos React deste laboratório.
+
+Para executá-lo a partir da raiz deste repositório:
+
+```bash
+cd provincia-de-sao-pedro
+npm install
+npm run dev
+```
+
+A documentação dos conceitos, das tecnologias e das formas de execução está no [README do projeto turístico](./provincia-de-sao-pedro/README.md).
