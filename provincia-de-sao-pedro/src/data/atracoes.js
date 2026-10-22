@@ -58,7 +58,7 @@ export const atracoes = [
     descricao:
       "Entre Bento Gonçalves, Garibaldi e Monte Belo do Sul, o Vale dos Vinhedos reúne paisagens de vinhedos, vinícolas e experiências gastronômicas. Confirme horários e necessidade de reserva diretamente com cada estabelecimento.",
     imagem:
-      "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1000&q=85",
+      "https://www.google.com/imgres?q=s%C3%ADtio%20arqueol%C3%B3gico%20de%20s%C3%A3o%20miguel%20arcanjo&imgurl=https%3A%2F%2Fwww.portaldasmissoes.com.br%2Fuploads%2Fempreendimentos%2F0000406_regular_patrimonio_historico_de_sao_miguel_das_missoes-ruinas-sao-miguel-fone-iphan-prefeitura-som-e-luz-jesuitas-reducaosregiao-missoes.jpg&imgrefurl=https%3A%2F%2Fwww.portaldasmissoes.com.br%2Fempreendimentos%2Ftodos%2Fsitio-arqueologico-de-sao-miguel-arcanjo-reducao-406&docid=Ma7dN-ksrAaosM&tbnid=TT9Nqta0WE6PbM&vet=12ahUKEwjMhuafv8yXAxUJJrkGHSICFoYQnPAOegQIKhAA..i&w=480&h=251&hcb=2&ved=2ahUKEwjMhuafv8yXAxUJJrkGHSICFoYQnPAOegQIKhAA",
     imagemAlt: "Fileiras de videiras em uma propriedade rural",
     icone: "🍇",
     destaque: "Sabores da Serra",
@@ -73,6 +73,7 @@ export const atracoes = [
       "As ruínas de São Miguel Arcanjo são um importante testemunho da história das Missões Jesuíticas Guarani. O conjunto integra o Patrimônio Mundial da UNESCO. Consulte o museu e a programação local para planejar a visita.",
     imagem:
       "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1000&q=85",
+",
     imagemAlt: "Edificação histórica de pedra sob o céu aberto",
     icone: "🏛",
     destaque: "Patrimônio histórico",
