@@ -20,7 +20,7 @@ A página inicial apresenta os seis conceitos em cartões, sem navegação adici
 
 ## Projeto de turismo: Província de São Pedro
 
-O projeto turístico é uma aplicação React independente dentro da pasta [`provincia-de-sao-pedro`](./provincia-de-sao-pedro/). Apresenta destinos do Rio Grande do Sul com busca, filtros, favoritos e detalhes. Favoritos e o roteiro planejado persistem no navegador com `useEffect` e `localStorage`.
+O projeto turístico é uma aplicação React independente dentro da pasta [`provincia-de-sao-pedro`](./provincia-de-sao-pedro/). Apresenta destinos do Rio Grande do Sul com busca, filtros, favoritos, detalhes e um formulário de planejamento que sugere destinos por duração e interesse. Favoritos e o roteiro planejado persistem no navegador com `useEffect` e `localStorage`.
 
 Para executá-lo a partir da raiz deste repositório:
 

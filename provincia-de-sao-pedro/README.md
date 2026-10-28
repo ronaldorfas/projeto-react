@@ -32,6 +32,7 @@ src/
     DestinationDetails.jsx
     DestinationFilters.jsx
     SiteHeader.jsx
+    TripPlanner.jsx
   data/
     atracoes.js
   App.jsx
@@ -81,6 +82,18 @@ O app mostra os cartões quando há resultados e uma mensagem com ação para li
 
 **Se condições não fossem usadas:** a página não poderia adaptar claramente o conteúdo aos resultados da busca ou às ações da pessoa usuária; mensagens vazias e detalhes selecionados precisariam de manipulação manual do DOM.
 
+### 7. Formulários
+
+`TripPlanner` usa um formulário controlado pelo React para receber cidade de partida, duração da viagem e interesse. Os campos são validados antes de gerar sugestões; cada sugestão pode ser adicionada ao roteiro persistido. A cidade é exibida como contexto, mas as sugestões são filtradas pelo interesse e não representam cálculo de distância ou rota real.
+
+**Se formulários não fossem usados:** seria necessário recolher essas informações por outros controles ou manipulação manual do DOM, dificultando a validação e a atualização das sugestões.
+
+### 8. Efeitos e persistência
+
+`useEffect` sincroniza favoritos e roteiro com `localStorage`, mantendo esses dados após recarregar a página no mesmo navegador.
+
+**Sem esse efeito:** as alterações continuariam disponíveis somente enquanto a aplicação estivesse aberta.
+
 ## Tecnologias e comparação
 
 | Tecnologia | Uso neste projeto | Sem ela / alternativa |
@@ -88,6 +101,7 @@ O app mostra os cartões quando há resultados e uma mensagem com ação para li
 | React 18 | Componentes, estado e renderização declarativa. | JavaScript com manipulação direta do DOM ou outra biblioteca/framework; seria necessário escolher e manter outro modelo para compor e atualizar a interface. |
 | JSX | Sintaxe declarativa para escrever a árvore de interface nos arquivos `.jsx`. | `React.createElement` ou criação manual de elementos; possível, porém mais verboso para uma página composta por vários componentes. |
 | JavaScript | Dados dos destinos, filtros e interações do usuário. | HTML estático não ofereceria busca, filtros ou favoritos dinâmicos. Outra linguagem de navegador, como TypeScript, poderia ser adotada com configuração adicional. |
+| Formulários HTML e estado React | Coletam e validam a cidade de partida, duração e interesse para sugerir destinos. | Sem o formulário, as preferências teriam de ser escolhidas por outra interface ou manipuladas diretamente no DOM. |
 | React `useEffect` e `localStorage` | Carregam e persistem favoritos e roteiro neste navegador entre visitas. | Sem persistência local, esses dados seriam perdidos ao recarregar a página; um servidor ou banco de dados seria necessário para sincronizá-los entre dispositivos. |
 | Vite | Servidor de desenvolvimento e empacotamento de produção. | Outras ferramentas, como webpack ou Parcel, poderiam cumprir essa função; sem ferramenta de build, seria preciso configurar a transformação de JSX e os módulos para produção. |
 | CSS | Layout responsivo, cores, tipografia, foco e estados visuais. | Sem estilos próprios, o conteúdo ainda poderia existir, mas perderia a identidade visual e parte da adaptação a telas diferentes. Frameworks CSS seriam alternativas, com dependência e convenções adicionais. |
@@ -97,12 +111,12 @@ O app mostra os cartões quando há resultados e uma mensagem com ação para li
 
 - Estrutura com cabeçalho, navegação, conteúdo principal, seções e rodapé.
 - Campo de busca com rótulo acessível, botões com estados `aria-pressed` e feedback de resultados com `aria-live`.
+- Campos do planejador com rótulos, validação nativa e apresentação acessível das sugestões.
 - Texto alternativo nas imagens, foco visível e layout responsivo.
 - Favoritos e roteiro persistem no armazenamento local do navegador; filtros e detalhes selecionados são reiniciados ao recarregar. Os dados não são sincronizados entre dispositivos.
 
-## Evoluções possíveis
+## Próximas etapas
 
-- Criar um formulário para organizar o roteiro por duração e interesses.
 - Adicionar páginas compartilháveis com React Router.
 - Consultar previsão do tempo para os destinos por uma API.
 - Usar imagens próprias ou locais com fonte e licença verificadas.

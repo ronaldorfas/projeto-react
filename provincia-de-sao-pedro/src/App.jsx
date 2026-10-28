@@ -3,6 +3,7 @@ import DestinationCard from "./components/DestinationCard.jsx";
 import DestinationDetails from "./components/DestinationDetails.jsx";
 import DestinationFilters from "./components/DestinationFilters.jsx";
 import SiteHeader from "./components/SiteHeader.jsx";
+import TripPlanner from "./components/TripPlanner.jsx";
 import { atracoes, categorias } from "./data/atracoes.js";
 
 const CHAVE_PERSISTENCIA = "provincia-de-sao-pedro:preferencias";
@@ -175,6 +176,13 @@ export default function App() {
           {erroPersistencia && (
             <p className="storage-warning" role="alert">{erroPersistencia}</p>
           )}
+
+          <TripPlanner
+            categorias={categorias}
+            destinos={atracoes}
+            destinosNoRoteiro={roteiro}
+            aoAdicionarAoRoteiro={adicionarAoRoteiro}
+          />
 
           <section className="itinerary" id="roteiro" aria-labelledby="itinerary-title">
             <div className="itinerary-heading">
