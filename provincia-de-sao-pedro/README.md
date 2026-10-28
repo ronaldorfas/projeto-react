@@ -63,7 +63,7 @@ Os dados e ações são passados dos componentes pais para os filhos por props. 
 
 ### 4. Estado e atualização da interface (Virtual DOM)
 
-`App` usa `useState` para guardar a busca, a categoria, os favoritos, o destino selecionado e o roteiro da viagem. É possível adicionar destinos pelo cartão e removê-los no painel “Meu roteiro”; destinos repetidos não são adicionados. Ao interagir, o estado muda e React atualiza a interface.
+`App` usa `useState` para guardar a busca, a categoria, os favoritos, o destino selecionado e o roteiro da viagem. É possível adicionar destinos pelo cartão e removê-los no painel “Meu roteiro”; destinos repetidos não são adicionados. Favoritos e roteiro são carregados e salvos no `localStorage` do navegador com `useEffect`, permanecendo após recarregar a página no mesmo navegador. Se o navegador bloquear o armazenamento ou os dados salvos forem inválidos, a página informa o problema.
 
 O Virtual DOM não é um segundo DOM que o usuário precisa atualizar manualmente: é parte do mecanismo interno de renderização do React. Este projeto demonstra o efeito observável do estado na interface, não uma simulação separada do DOM.
 
@@ -88,6 +88,7 @@ O app mostra os cartões quando há resultados e uma mensagem com ação para li
 | React 18 | Componentes, estado e renderização declarativa. | JavaScript com manipulação direta do DOM ou outra biblioteca/framework; seria necessário escolher e manter outro modelo para compor e atualizar a interface. |
 | JSX | Sintaxe declarativa para escrever a árvore de interface nos arquivos `.jsx`. | `React.createElement` ou criação manual de elementos; possível, porém mais verboso para uma página composta por vários componentes. |
 | JavaScript | Dados dos destinos, filtros e interações do usuário. | HTML estático não ofereceria busca, filtros ou favoritos dinâmicos. Outra linguagem de navegador, como TypeScript, poderia ser adotada com configuração adicional. |
+| React `useEffect` e `localStorage` | Carregam e persistem favoritos e roteiro neste navegador entre visitas. | Sem persistência local, esses dados seriam perdidos ao recarregar a página; um servidor ou banco de dados seria necessário para sincronizá-los entre dispositivos. |
 | Vite | Servidor de desenvolvimento e empacotamento de produção. | Outras ferramentas, como webpack ou Parcel, poderiam cumprir essa função; sem ferramenta de build, seria preciso configurar a transformação de JSX e os módulos para produção. |
 | CSS | Layout responsivo, cores, tipografia, foco e estados visuais. | Sem estilos próprios, o conteúdo ainda poderia existir, mas perderia a identidade visual e parte da adaptação a telas diferentes. Frameworks CSS seriam alternativas, com dependência e convenções adicionais. |
 | Google Fonts e imagens Unsplash | Fontes e fotografias carregadas por URLs externas. | Com bloqueio de rede, as fontes voltam às alternativas do sistema e as imagens podem não carregar. Recursos locais ou hospedados pelo projeto eliminariam essa dependência externa. |
@@ -97,11 +98,10 @@ O app mostra os cartões quando há resultados e uma mensagem com ação para li
 - Estrutura com cabeçalho, navegação, conteúdo principal, seções e rodapé.
 - Campo de busca com rótulo acessível, botões com estados `aria-pressed` e feedback de resultados com `aria-live`.
 - Texto alternativo nas imagens, foco visível e layout responsivo.
-- Favoritos, filtros e roteiro permanecem em memória durante a sessão; ainda não há armazenamento persistente.
+- Favoritos e roteiro persistem no armazenamento local do navegador; filtros e detalhes selecionados são reiniciados ao recarregar. Os dados não são sincronizados entre dispositivos.
 
 ## Evoluções possíveis
 
-- Persistir favoritos e roteiro no navegador com `localStorage` e `useEffect`.
 - Criar um formulário para organizar o roteiro por duração e interesses.
 - Adicionar páginas compartilháveis com React Router.
 - Consultar previsão do tempo para os destinos por uma API.

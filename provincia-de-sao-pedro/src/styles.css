@@ -205,6 +205,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .favorites-filter.is-active { border-color: #c4785b; color: #a45d43; background: #f7e9df; }
 .results-count { margin: 0 0 18px; color: #40584d; font-size: 10px; font-weight: 600; }
 .results-count span { color: #8c968e; font-weight: 400; }
+.storage-warning { margin: 0 0 18px; padding: 11px 14px; border-left: 3px solid #bc654b; color: #844b39; background: #f7e9df; font-size: 11px; line-height: 1.5; }
 .itinerary { margin: 0 0 22px; padding: 20px 22px; border: 1px solid #e3e0d7; border-radius: 4px; background: #f2f1e9; }
 .itinerary-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .itinerary-heading .eyebrow { margin-bottom: 4px; }

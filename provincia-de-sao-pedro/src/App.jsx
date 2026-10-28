@@ -1,20 +1,76 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DestinationCard from "./components/DestinationCard.jsx";
 import DestinationDetails from "./components/DestinationDetails.jsx";
 import DestinationFilters from "./components/DestinationFilters.jsx";
 import SiteHeader from "./components/SiteHeader.jsx";
 import { atracoes, categorias } from "./data/atracoes.js";
 
+const CHAVE_PERSISTENCIA = "provincia-de-sao-pedro:preferencias";
+
+function carregarPreferencias() {
+  try {
+    const salvas = localStorage.getItem(CHAVE_PERSISTENCIA);
+    if (!salvas) return { favoritos: [], roteiro: [], erro: "" };
+
+    const preferencias = JSON.parse(salvas);
+    if (
+      !preferencias ||
+      !Array.isArray(preferencias.favoritos) ||
+      !Array.isArray(preferencias.roteiro) ||
+      !preferencias.favoritos.every((id) => typeof id === "string") ||
+      !preferencias.roteiro.every((id) => typeof id === "string")
+    ) {
+      throw new Error("Formato de preferências salvo é inválido.");
+    }
+
+    const idsValidos = new Set(atracoes.map((destino) => destino.id));
+    return {
+      favoritos: [...new Set(preferencias.favoritos.filter((id) => idsValidos.has(id)))],
+      roteiro: [...new Set(preferencias.roteiro.filter((id) => idsValidos.has(id)))],
+      erro: "",
+    };
+  } catch (error) {
+    console.error("Não foi possível carregar as preferências salvas.", error);
+    return {
+      favoritos: [],
+      roteiro: [],
+      erro: "Não foi possível carregar os dados salvos. Favoritos e roteiro começam vazios.",
+    };
+  }
+}
+
 export default function App() {
+  const [preferenciasIniciais] = useState(carregarPreferencias);
   const [busca, setBusca] = useState("");
   const [categoriaSelecionada, setCategoriaSelecionada] = useState("Todas");
-  const [favoritos, setFavoritos] = useState([]);
+  const [favoritos, setFavoritos] = useState(preferenciasIniciais.favoritos);
   const [somenteFavoritos, setSomenteFavoritos] = useState(false);
   const [destinoSelecionado, setDestinoSelecionado] = useState(null);
-  const [roteiro, setRoteiro] = useState([]);
+  const [roteiro, setRoteiro] = useState(preferenciasIniciais.roteiro);
+  const [erroPersistencia, setErroPersistencia] = useState(preferenciasIniciais.erro);
+  const [persistenciaHabilitada, setPersistenciaHabilitada] = useState(
+    !preferenciasIniciais.erro,
+  );
   const destinosNoRoteiro = roteiro
     .map((id) => atracoes.find((destino) => destino.id === id))
     .filter(Boolean);
+
+  useEffect(() => {
+    if (!persistenciaHabilitada) return;
+
+    try {
+      localStorage.setItem(
+        CHAVE_PERSISTENCIA,
+        JSON.stringify({ favoritos, roteiro }),
+      );
+      setErroPersistencia("");
+    } catch (error) {
+      console.error("Não foi possível salvar as preferências no navegador.", error);
+      setErroPersistencia(
+        "Não foi possível salvar favoritos e roteiro neste navegador.",
+      );
+    }
+  }, [favoritos, roteiro, persistenciaHabilitada]);
 
   const termo = busca.trim().toLocaleLowerCase("pt-BR");
   const destinosFiltrados = atracoes.filter((destino) => {
@@ -33,6 +89,7 @@ export default function App() {
   });
 
   function alternarFavorito(id) {
+    setPersistenciaHabilitada(true);
     setFavoritos((atuais) =>
       atuais.includes(id)
         ? atuais.filter((favoritoId) => favoritoId !== id)
@@ -41,12 +98,14 @@ export default function App() {
   }
 
   function adicionarAoRoteiro(destino) {
+    setPersistenciaHabilitada(true);
     setRoteiro((atuais) =>
       atuais.includes(destino.id) ? atuais : [...atuais, destino.id],
     );
   }
 
   function removerDoRoteiro(id) {
+    setPersistenciaHabilitada(true);
     setRoteiro((atuais) => atuais.filter((destinoId) => destinoId !== id));
   }
 
@@ -112,6 +171,10 @@ export default function App() {
               : `${destinosFiltrados.length} destinos encontrados`}
             <span> · atualizados conforme sua busca</span>
           </p>
+
+          {erroPersistencia && (
+            <p className="storage-warning" role="alert">{erroPersistencia}</p>
+          )}
 
           <section className="itinerary" id="roteiro" aria-labelledby="itinerary-title">
             <div className="itinerary-heading">
