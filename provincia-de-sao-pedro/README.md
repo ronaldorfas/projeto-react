@@ -2,6 +2,8 @@
 
 Guia demonstrativo de destinos turísticos do Rio Grande do Sul, feito com React. A página reúne lugares de natureza, cultura, litoral e enogastronomia; permite pesquisar, filtrar, salvar favoritos e abrir uma descrição de cada destino.
 
+**Acesse a página publicada:** [provincia-de-sao-pedro.vercel.app](https://provincia-de-sao-pedro.vercel.app/)
+
 > As informações são introdutórias e servem para demonstração. Horários, condições de acesso, reservas e regras de visitação devem ser confirmados nos canais oficiais antes da viagem.
 
 ## Executar o projeto
