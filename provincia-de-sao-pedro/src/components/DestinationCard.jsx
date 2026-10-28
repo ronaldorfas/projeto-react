@@ -3,6 +3,8 @@ export default function DestinationCard({
   favorito,
   aoAlternarFavorito,
   aoVerDetalhes,
+  noRoteiro,
+  aoAdicionarAoRoteiro,
 }) {
   return (
     <article className="destination-card">
@@ -37,6 +39,14 @@ export default function DestinationCard({
           onClick={() => aoVerDetalhes(destino)}
         >
           Descobrir destino <span aria-hidden="true">→</span>
+        </button>
+        <button
+          className="itinerary-add"
+          type="button"
+          disabled={noRoteiro}
+          onClick={() => aoAdicionarAoRoteiro(destino)}
+        >
+          {noRoteiro ? "Adicionado ao roteiro" : "Adicionar ao roteiro"}
         </button>
       </div>
     </article>

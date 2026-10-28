@@ -205,6 +205,22 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .favorites-filter.is-active { border-color: #c4785b; color: #a45d43; background: #f7e9df; }
 .results-count { margin: 0 0 18px; color: #40584d; font-size: 10px; font-weight: 600; }
 .results-count span { color: #8c968e; font-weight: 400; }
+.itinerary { margin: 0 0 22px; padding: 20px 22px; border: 1px solid #e3e0d7; border-radius: 4px; background: #f2f1e9; }
+.itinerary-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.itinerary-heading .eyebrow { margin-bottom: 4px; }
+.itinerary-heading h3 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-size: 20px; }
+.itinerary-heading > span { color: #66736a; font-size: 10px; }
+.itinerary-empty { margin: 12px 0 0; color: #78837a; font-size: 11px; line-height: 1.6; }
+.itinerary-list { display: grid; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+.itinerary-list li { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 9px; border-top: 1px solid #dfded4; }
+.itinerary-list li > span { display: grid; gap: 3px; }
+.itinerary-list strong { color: #345044; font-size: 11px; }
+.itinerary-list small { color: #78837a; font-size: 10px; }
+.itinerary-remove, .itinerary-add { padding: 0; border: 0; color: #345c49; background: transparent; cursor: pointer; font-size: 10px; font-weight: 700; }
+.itinerary-remove { flex-shrink: 0; color: #a45d43; }
+.itinerary-add { margin: 10px 0 0 12px; }
+.itinerary-add:hover:not(:disabled), .itinerary-remove:hover { color: #b66c48; }
+.itinerary-add:disabled { color: #78837a; cursor: default; }
 .destination-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .destination-card {
   min-width: 0;
@@ -355,6 +371,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   .section-aside { display: none; }
   .filter-row { align-items: start; flex-direction: column; }
   .favorites-filter { align-self: flex-start; }
+  .itinerary { padding: 17px; }
   .about-section { grid-template-columns: 78px 1fr; gap: 22px; padding: 42px 22px; }
   .about-mark { width: 74px; height: 74px; font-size: 25px; }
   .about-section h2 { font-size: 27px; }

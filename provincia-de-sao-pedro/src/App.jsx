@@ -11,6 +11,10 @@ export default function App() {
   const [favoritos, setFavoritos] = useState([]);
   const [somenteFavoritos, setSomenteFavoritos] = useState(false);
   const [destinoSelecionado, setDestinoSelecionado] = useState(null);
+  const [roteiro, setRoteiro] = useState([]);
+  const destinosNoRoteiro = roteiro
+    .map((id) => atracoes.find((destino) => destino.id === id))
+    .filter(Boolean);
 
   const termo = busca.trim().toLocaleLowerCase("pt-BR");
   const destinosFiltrados = atracoes.filter((destino) => {
@@ -34,6 +38,16 @@ export default function App() {
         ? atuais.filter((favoritoId) => favoritoId !== id)
         : [...atuais, id],
     );
+  }
+
+  function adicionarAoRoteiro(destino) {
+    setRoteiro((atuais) =>
+      atuais.includes(destino.id) ? atuais : [...atuais, destino.id],
+    );
+  }
+
+  function removerDoRoteiro(id) {
+    setRoteiro((atuais) => atuais.filter((destinoId) => destinoId !== id));
   }
 
   return (
@@ -99,6 +113,42 @@ export default function App() {
             <span> · atualizados conforme sua busca</span>
           </p>
 
+          <section className="itinerary" id="roteiro" aria-labelledby="itinerary-title">
+            <div className="itinerary-heading">
+              <div>
+                <p className="eyebrow">Sua próxima viagem</p>
+                <h3 id="itinerary-title">Meu roteiro</h3>
+              </div>
+              <span aria-live="polite">
+                {roteiro.length} {roteiro.length === 1 ? "destino" : "destinos"}
+              </span>
+            </div>
+            {destinosNoRoteiro.length > 0 ? (
+              <ol className="itinerary-list">
+                {destinosNoRoteiro.map((destino) => (
+                  <li key={destino.id}>
+                    <span>
+                      <strong>{destino.nome}</strong>
+                      <small>{destino.cidade}</small>
+                    </span>
+                    <button
+                      className="itinerary-remove"
+                      type="button"
+                      onClick={() => removerDoRoteiro(destino.id)}
+                      aria-label={`Remover ${destino.nome} do roteiro`}
+                    >
+                      Remover
+                    </button>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <p className="itinerary-empty">
+                Adicione destinos pelos cartões para começar a planejar sua viagem.
+              </p>
+            )}
+          </section>
+
           <DestinationDetails
             destino={destinoSelecionado}
             aoFechar={() => setDestinoSelecionado(null)}
@@ -113,6 +163,8 @@ export default function App() {
                   favorito={favoritos.includes(destino.id)}
                   aoAlternarFavorito={alternarFavorito}
                   aoVerDetalhes={setDestinoSelecionado}
+                  noRoteiro={roteiro.includes(destino.id)}
+                  aoAdicionarAoRoteiro={adicionarAoRoteiro}
                 />
               ))}
             </div>

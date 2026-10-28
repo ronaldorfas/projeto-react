@@ -63,7 +63,7 @@ Os dados e ações são passados dos componentes pais para os filhos por props. 
 
 ### 4. Estado e atualização da interface (Virtual DOM)
 
-`App` usa `useState` para guardar a busca, a categoria, os favoritos e o destino selecionado. Ao digitar ou clicar, o estado muda e React renderiza a nova descrição da interface, comparando o resultado com a renderização anterior e atualizando o DOM necessário.
+`App` usa `useState` para guardar a busca, a categoria, os favoritos, o destino selecionado e o roteiro da viagem. É possível adicionar destinos pelo cartão e removê-los no painel “Meu roteiro”; destinos repetidos não são adicionados. Ao interagir, o estado muda e React atualiza a interface.
 
 O Virtual DOM não é um segundo DOM que o usuário precisa atualizar manualmente: é parte do mecanismo interno de renderização do React. Este projeto demonstra o efeito observável do estado na interface, não uma simulação separada do DOM.
 
@@ -97,11 +97,14 @@ O app mostra os cartões quando há resultados e uma mensagem com ação para li
 - Estrutura com cabeçalho, navegação, conteúdo principal, seções e rodapé.
 - Campo de busca com rótulo acessível, botões com estados `aria-pressed` e feedback de resultados com `aria-live`.
 - Texto alternativo nas imagens, foco visível e layout responsivo.
-- Favoritos e filtros permanecem em memória durante a sessão; não há conta ou armazenamento persistente.
+- Favoritos, filtros e roteiro permanecem em memória durante a sessão; ainda não há armazenamento persistente.
 
 ## Evoluções possíveis
 
+- Persistir favoritos e roteiro no navegador com `localStorage` e `useEffect`.
+- Criar um formulário para organizar o roteiro por duração e interesses.
+- Adicionar páginas compartilháveis com React Router.
+- Consultar previsão do tempo para os destinos por uma API.
 - Usar imagens próprias ou locais com fonte e licença verificadas.
 - Adicionar links oficiais, mapas, rotas e informações de acessibilidade dos locais.
-- Persistir favoritos no navegador ou oferecer compartilhamento de roteiros.
 - Criar testes automatizados para filtros, favoritos e renderização sem resultados.
