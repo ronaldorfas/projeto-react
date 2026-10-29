@@ -4,7 +4,6 @@ export default function DestinationCard({
   destino,
   favorito,
   aoAlternarFavorito,
-  aoVerDetalhes,
   noRoteiro,
   aoAdicionarAoRoteiro,
 }) {

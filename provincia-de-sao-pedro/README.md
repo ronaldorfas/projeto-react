@@ -1,6 +1,6 @@
 # Província de São Pedro
 
-Guia demonstrativo de destinos turísticos do Rio Grande do Sul, feito com React. A página reúne lugares de natureza, cultura, litoral e enogastronomia; permite pesquisar, filtrar, salvar favoritos e abrir uma descrição de cada destino.
+Guia demonstrativo de destinos turísticos do Rio Grande do Sul, feito com React. A aplicação reúne lugares de natureza, cultura, litoral e enogastronomia; permite pesquisar, filtrar, salvar favoritos, montar um roteiro e acessar páginas compartilháveis de cada destino.
 
 **Acesse a página publicada:** [provincia-de-sao-pedro.vercel.app](https://provincia-de-sao-pedro.vercel.app/)
 
@@ -29,7 +29,6 @@ npm run preview
 src/
   components/
     DestinationCard.jsx
-    DestinationDetails.jsx
     DestinationFilters.jsx
     SiteHeader.jsx
     TripPlanner.jsx
@@ -64,7 +63,7 @@ Os dados e ações são passados dos componentes pais para os filhos por props. 
 
 ### 4. Estado e atualização da interface (Virtual DOM)
 
-`App` usa `useState` para guardar a busca, a categoria, os favoritos, o destino selecionado e o roteiro da viagem. É possível adicionar destinos pelo cartão e removê-los no painel “Meu roteiro”; destinos repetidos não são adicionados. Favoritos e roteiro são carregados e salvos no `localStorage` do navegador com `useEffect`, permanecendo após recarregar a página no mesmo navegador. Se o navegador bloquear o armazenamento ou os dados salvos forem inválidos, a página informa o problema.
+`App` usa `useState` para guardar a busca, a categoria, os favoritos e o roteiro da viagem. É possível adicionar destinos pelos cartões ou pelo planejador e removê-los na página “Meu roteiro”; destinos repetidos não são adicionados. Favoritos e roteiro são carregados e salvos no `localStorage` do navegador com `useEffect`, permanecendo após recarregar a página no mesmo navegador. Se o navegador bloquear o armazenamento ou os dados salvos forem inválidos, a página informa o problema.
 
 O Virtual DOM não é um segundo DOM que o usuário precisa atualizar manualmente: é parte do mecanismo interno de renderização do React. Este projeto demonstra o efeito observável do estado na interface, não uma simulação separada do DOM.
 
@@ -94,6 +93,22 @@ O app mostra os cartões quando há resultados e uma mensagem com ação para li
 
 **Sem esse efeito:** as alterações continuariam disponíveis somente enquanto a aplicação estivesse aberta.
 
+### 9. Rotas e navegação
+
+React Router apresenta páginas distintas para início, catálogo, favoritos, roteiro e detalhes de cada destino. Os links atualizam a URL sem recarregar a aplicação; a configuração `vercel.json` encaminha as rotas ao app para que links diretos e recarregamentos funcionem na publicação.
+
+**Sem um roteador:** seria necessário concentrar todas as telas em uma página ou implementar manualmente a leitura e sincronização da URL, histórico do navegador e navegação.
+
+Rotas disponíveis:
+
+| URL | Conteúdo |
+|---|---|
+| `/` | Página inicial e catálogo |
+| `/destinos` | Catálogo completo |
+| `/destinos/:id` | Detalhes compartilháveis de um destino |
+| `/favoritos` | Destinos favoritos |
+| `/roteiro` | Planejador e roteiro salvo |
+
 ## Tecnologias e comparação
 
 | Tecnologia | Uso neste projeto | Sem ela / alternativa |
@@ -103,6 +118,7 @@ O app mostra os cartões quando há resultados e uma mensagem com ação para li
 | JavaScript | Dados dos destinos, filtros e interações do usuário. | HTML estático não ofereceria busca, filtros ou favoritos dinâmicos. Outra linguagem de navegador, como TypeScript, poderia ser adotada com configuração adicional. |
 | Formulários HTML e estado React | Coletam e validam a cidade de partida, duração e interesse para sugerir destinos. | Sem o formulário, as preferências teriam de ser escolhidas por outra interface ou manipuladas diretamente no DOM. |
 | React `useEffect` e `localStorage` | Carregam e persistem favoritos e roteiro neste navegador entre visitas. | Sem persistência local, esses dados seriam perdidos ao recarregar a página; um servidor ou banco de dados seria necessário para sincronizá-los entre dispositivos. |
+| React Router | Navegação por URLs para catálogo, favoritos, roteiro e detalhes. | Sem roteador, histórico e rotas precisariam ser controlados manualmente ou todas as telas ficariam em uma única página. |
 | Vite | Servidor de desenvolvimento e empacotamento de produção. | Outras ferramentas, como webpack ou Parcel, poderiam cumprir essa função; sem ferramenta de build, seria preciso configurar a transformação de JSX e os módulos para produção. |
 | CSS | Layout responsivo, cores, tipografia, foco e estados visuais. | Sem estilos próprios, o conteúdo ainda poderia existir, mas perderia a identidade visual e parte da adaptação a telas diferentes. Frameworks CSS seriam alternativas, com dependência e convenções adicionais. |
 | Google Fonts e imagens Unsplash | Fontes e fotografias carregadas por URLs externas. | Com bloqueio de rede, as fontes voltam às alternativas do sistema e as imagens podem não carregar. Recursos locais ou hospedados pelo projeto eliminariam essa dependência externa. |
@@ -114,10 +130,10 @@ O app mostra os cartões quando há resultados e uma mensagem com ação para li
 - Campos do planejador com rótulos, validação nativa e apresentação acessível das sugestões.
 - Texto alternativo nas imagens, foco visível e layout responsivo.
 - Favoritos e roteiro persistem no armazenamento local do navegador; filtros e detalhes selecionados são reiniciados ao recarregar. Os dados não são sincronizados entre dispositivos.
+- URLs de destinos e páginas de favoritos/roteiro podem ser abertas diretamente e compartilhadas.
 
 ## Próximas etapas
 
-- Adicionar páginas compartilháveis com React Router.
 - Consultar previsão do tempo para os destinos por uma API.
 - Usar imagens próprias ou locais com fonte e licença verificadas.
 - Adicionar links oficiais, mapas, rotas e informações de acessibilidade dos locais.

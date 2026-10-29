@@ -191,6 +191,24 @@ function DestinationCatalog({
   );
 }
 
+function AboutProject() {
+  return (
+    <section className="about-section" id="sobre">
+      <div className="about-mark" aria-hidden="true">RS</div>
+      <div>
+        <p className="eyebrow">Sobre o projeto</p>
+        <h2>Uma viagem pelo estado,<br />construída com React.</h2>
+        <p>
+          Província de São Pedro é um guia demonstrativo de destinos
+          gaúchos. Explore os cartões, filtre por interesse e salve seus
+          lugares favoritos.
+        </p>
+      </div>
+      <Link className="about-link" to="/">Voltar ao início ↑</Link>
+    </section>
+  );
+}
+
 function DestinationDetailPage({
   favoritos,
   roteiro,
@@ -340,7 +358,12 @@ export default function App() {
         <Routes>
           <Route
             path="/"
-            element={<DestinationCatalog mostrarHero {...dadosCatalogo} />}
+            element={
+              <>
+                <DestinationCatalog mostrarHero {...dadosCatalogo} />
+                <AboutProject />
+              </>
+            }
           />
           <Route
             path="/destinos"
