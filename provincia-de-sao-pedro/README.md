@@ -32,6 +32,7 @@ src/
     DestinationFilters.jsx
     SiteHeader.jsx
     TripPlanner.jsx
+    WeatherForecast.jsx
   data/
     atracoes.js
   App.jsx
@@ -110,6 +111,14 @@ Rotas disponíveis:
 | `/roteiro` | Planejador e roteiro salvo |
 | `/sobre` | Informações sobre o projeto |
 
+### 10. Consumo de APIs
+
+Na página de cada destino, `WeatherForecast` consulta a API pública da [Open-Meteo](https://open-meteo.com/) usando coordenadas aproximadas da cidade. Exibe a previsão para três dias e informa estados de carregamento e erro, com opção para tentar novamente. A requisição é cancelada se a pessoa sair da página antes da resposta; respostas inválidas também são tratadas como erro.
+
+A previsão usa a cidade como referência e é informativa: não representa necessariamente as condições dentro de parques ou pontos específicos e pode mudar. É necessária conexão com a internet para carregar os dados.
+
+**Sem uma API:** seria necessário manter e atualizar os dados meteorológicos manualmente; a previsão deixaria de refletir informações atuais.
+
 ## Tecnologias e comparação
 
 | Tecnologia | Uso neste projeto | Sem ela / alternativa |
@@ -120,6 +129,7 @@ Rotas disponíveis:
 | Formulários HTML e estado React | Coletam e validam a cidade de partida, duração e interesse para sugerir destinos. | Sem o formulário, as preferências teriam de ser escolhidas por outra interface ou manipuladas diretamente no DOM. |
 | React `useEffect` e `localStorage` | Carregam e persistem favoritos e roteiro neste navegador entre visitas. | Sem persistência local, esses dados seriam perdidos ao recarregar a página; um servidor ou banco de dados seria necessário para sincronizá-los entre dispositivos. |
 | React Router | Navegação por URLs para catálogo, favoritos, roteiro e detalhes. | Sem roteador, histórico e rotas precisariam ser controlados manualmente ou todas as telas ficariam em uma única página. |
+| API Open-Meteo e Fetch | Buscam a previsão diária de três dias nas páginas de destino, sem chave de API. | Sem o serviço externo, seria preciso manter dados meteorológicos manualmente, que ficariam desatualizados. |
 | Vite | Servidor de desenvolvimento e empacotamento de produção. | Outras ferramentas, como webpack ou Parcel, poderiam cumprir essa função; sem ferramenta de build, seria preciso configurar a transformação de JSX e os módulos para produção. |
 | CSS | Layout responsivo, cores, tipografia, foco e estados visuais. | Sem estilos próprios, o conteúdo ainda poderia existir, mas perderia a identidade visual e parte da adaptação a telas diferentes. Frameworks CSS seriam alternativas, com dependência e convenções adicionais. |
 | Google Fonts e imagens Unsplash | Fontes e fotografias carregadas por URLs externas. | Com bloqueio de rede, as fontes voltam às alternativas do sistema e as imagens podem não carregar. Recursos locais ou hospedados pelo projeto eliminariam essa dependência externa. |
@@ -132,10 +142,10 @@ Rotas disponíveis:
 - Texto alternativo nas imagens, foco visível e layout responsivo.
 - Favoritos e roteiro persistem no armazenamento local do navegador; filtros são reiniciados ao recarregar. Os dados não são sincronizados entre dispositivos.
 - URLs de destinos e páginas de favoritos/roteiro podem ser abertas diretamente e compartilhadas.
+- A previsão meteorológica é obtida pela internet; indisponibilidade da API é exibida com opção para tentar novamente.
 
-## Próximas etapas
+## Melhorias futuras
 
-- Consultar previsão do tempo para os destinos por uma API.
 - Usar imagens próprias ou locais com fonte e licença verificadas.
 - Adicionar links oficiais, mapas, rotas e informações de acessibilidade dos locais.
 - Criar testes automatizados para filtros, favoritos e renderização sem resultados.

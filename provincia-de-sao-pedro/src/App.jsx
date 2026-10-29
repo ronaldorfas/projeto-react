@@ -4,6 +4,7 @@ import DestinationCard from "./components/DestinationCard.jsx";
 import DestinationFilters from "./components/DestinationFilters.jsx";
 import SiteHeader from "./components/SiteHeader.jsx";
 import TripPlanner from "./components/TripPlanner.jsx";
+import WeatherForecast from "./components/WeatherForecast.jsx";
 import { atracoes, categorias } from "./data/atracoes.js";
 
 const CHAVE_PERSISTENCIA = "provincia-de-sao-pedro:preferencias";
@@ -271,6 +272,7 @@ function DestinationDetailPage({
               {noRoteiro ? "Adicionado ao roteiro" : "Adicionar ao roteiro"}
             </button>
           </div>
+          <WeatherForecast destino={destino} />
         </div>
       </div>
     </section>

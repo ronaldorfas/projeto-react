@@ -327,6 +327,23 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 .destination-page-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 23px; }
 .destination-page-actions .planner-submit { margin: 0; }
 .destination-page-actions .planner-submit:disabled { background: #78837a; cursor: default; }
+.weather { margin-top: 30px; padding: 20px; border: 1px solid #e3e0d7; border-radius: 4px; background: #fbfaf6; }
+.weather-heading { display: flex; align-items: end; justify-content: space-between; gap: 12px; }
+.weather-heading .eyebrow { margin-bottom: 5px; }
+.weather-heading h2 { margin: 0; font-family: "Playfair Display", Georgia, serif; font-size: 19px; }
+.weather-location-note, .weather-attribution { color: #78837a; font-size: 9px; }
+.weather-list { display: grid; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+.weather-list li { display: grid; grid-template-columns: 1fr 1.4fr auto; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid #e8e5dc; font-size: 10px; }
+.weather-day { color: #345044; font-weight: 700; text-transform: capitalize; }
+.weather-condition { color: #78837a; }
+.weather-temperatures { display: flex; gap: 9px; color: #78837a; }
+.weather-temperatures strong { color: #345044; }
+.weather-message, .weather-error p { color: #78837a; font-size: 11px; line-height: 1.6; }
+.weather-error { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.weather-error button { flex-shrink: 0; padding: 8px 11px; border: 1px solid #deded3; border-radius: 3px; color: #345c49; background: transparent; cursor: pointer; font-size: 10px; font-weight: 600; }
+.weather-error button:hover { border-color: #7b9585; }
+.weather-attribution { margin: 13px 0 0; line-height: 1.5; }
+.weather-attribution a { color: #345c49; text-decoration: underline; }
 .route-page .empty-state { margin: 0; }
 .route-page .itinerary-list { margin-top: 0; }
 .route-page > .planner { margin-bottom: 28px; }
@@ -410,6 +427,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   .route-page { min-height: 55vh; padding: 52px 22px 70px; }
   .destination-page-content { grid-template-columns: 1fr; gap: 25px; }
   .destination-page-content > img { max-height: 340px; }
+  .weather-heading { align-items: start; flex-direction: column; }
   .section-heading { align-items: start; }
   .section-aside { display: none; }
   .filter-row { align-items: start; flex-direction: column; }
