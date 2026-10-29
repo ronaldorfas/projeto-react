@@ -22,6 +22,8 @@ A página inicial apresenta os seis conceitos em cartões, sem navegação adici
 
 O projeto turístico é uma aplicação React independente dentro da pasta [`provincia-de-sao-pedro`](./provincia-de-sao-pedro/). Apresenta destinos do Rio Grande do Sul com busca, filtros, favoritos, páginas compartilháveis com React Router, previsão do tempo via Open-Meteo e um formulário de planejamento que sugere destinos por duração e interesse. Favoritos e o roteiro planejado persistem no navegador com `useEffect` e `localStorage`.
 
+**Acesse:** [React Lab](https://projeto-react-five-swart.vercel.app/) · [Província de São Pedro](https://provincia-de-sao-pedro.vercel.app/)
+
 Para executá-lo a partir da raiz deste repositório:
 
 ```bash

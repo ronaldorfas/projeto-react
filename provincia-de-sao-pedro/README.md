@@ -132,7 +132,7 @@ A previsão usa a cidade como referência e é informativa: não representa nece
 | API Open-Meteo e Fetch | Buscam a previsão diária de três dias nas páginas de destino, sem chave de API. | Sem o serviço externo, seria preciso manter dados meteorológicos manualmente, que ficariam desatualizados. |
 | Vite | Servidor de desenvolvimento e empacotamento de produção. | Outras ferramentas, como webpack ou Parcel, poderiam cumprir essa função; sem ferramenta de build, seria preciso configurar a transformação de JSX e os módulos para produção. |
 | CSS | Layout responsivo, cores, tipografia, foco e estados visuais. | Sem estilos próprios, o conteúdo ainda poderia existir, mas perderia a identidade visual e parte da adaptação a telas diferentes. Frameworks CSS seriam alternativas, com dependência e convenções adicionais. |
-| Google Fonts e imagens Unsplash | Fontes e fotografias carregadas por URLs externas. | Com bloqueio de rede, as fontes voltam às alternativas do sistema e as imagens podem não carregar. Recursos locais ou hospedados pelo projeto eliminariam essa dependência externa. |
+| Google Fonts e imagens locais | As fontes DM Sans e Playfair Display são carregadas do Google Fonts; as fotografias ficam nos arquivos locais de `public/images`. | Sem acesso à internet, as fontes usam alternativas do sistema; as fotos locais continuam disponíveis. As fontes poderiam ser hospedadas no projeto para remover essa dependência externa. |
 
 ## Acessibilidade e experiência
 
@@ -146,6 +146,6 @@ A previsão usa a cidade como referência e é informativa: não representa nece
 
 ## Melhorias futuras
 
-- Usar imagens próprias ou locais com fonte e licença verificadas.
+- Documentar a origem e verificar a licença de cada imagem local; substituir as que não tiverem uso autorizado.
 - Adicionar links oficiais, mapas, rotas e informações de acessibilidade dos locais.
 - Criar testes automatizados para filtros, favoritos e renderização sem resultados.
