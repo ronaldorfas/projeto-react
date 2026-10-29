@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function DestinationCard({
   destino,
   favorito,
@@ -33,13 +35,9 @@ export default function DestinationCard({
         </p>
         <h3>{destino.nome}</h3>
         <p className="destination-summary">{destino.resumo}</p>
-        <button
-          className="text-link"
-          type="button"
-          onClick={() => aoVerDetalhes(destino)}
-        >
+        <Link className="text-link" to={`/destinos/${destino.id}`}>
           Descobrir destino <span aria-hidden="true">→</span>
-        </button>
+        </Link>
         <button
           className="itinerary-add"
           type="button"

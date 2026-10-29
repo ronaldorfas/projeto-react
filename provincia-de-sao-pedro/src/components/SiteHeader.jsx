@@ -1,17 +1,20 @@
-export default function SiteHeader() {
+import { NavLink } from "react-router-dom";
+
+export default function SiteHeader({ quantidadeFavoritos }) {
   return (
     <header className="site-header">
-      <a className="brand" href="#inicio" aria-label="Província de São Pedro, início">
+      <NavLink className="brand" to="/" aria-label="Província de São Pedro, início">
         <span className="brand-mark" aria-hidden="true">P</span>
         <span>
           <strong>Província de São Pedro</strong>
           <small>Rio Grande do Sul, Brasil</small>
         </span>
-      </a>
+      </NavLink>
 
       <nav className="main-nav" aria-label="Navegação principal">
-        <a href="#destinos">Destinos</a>
-        <a href="#sobre">Sobre o projeto</a>
+        <NavLink to="/destinos">Destinos</NavLink>
+        <NavLink to="/favoritos">Favoritos ({quantidadeFavoritos})</NavLink>
+        <NavLink to="/roteiro">Meu roteiro</NavLink>
       </nav>
     </header>
   );
