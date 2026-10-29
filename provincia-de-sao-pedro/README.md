@@ -51,7 +51,7 @@ JSX aparece nos componentes para descrever a estrutura da página junto ao JavaS
 
 ### 2. Componentes reutilizáveis
 
-`SiteHeader`, `DestinationFilters`, `DestinationCard` e `DestinationDetails` dividem a página em partes com responsabilidades claras. `App` reúne os componentes e controla o estado compartilhado.
+`SiteHeader`, `DestinationFilters`, `DestinationCard` e `TripPlanner` dividem a interface em partes com responsabilidades claras. `App` reúne os componentes, rotas e estado compartilhado.
 
 **Se não fossem usados:** o conteúdo ficaria concentrado em uma única função ou arquivo, com trechos repetidos para cada cartão. Alterar o layout ou manter a página se tornaria mais trabalhoso.
 
@@ -77,9 +77,9 @@ Os destinos são armazenados em `src/data/atracoes.js` e exibidos com `map()`. C
 
 ### 6. Renderização condicional
 
-O app mostra os cartões quando há resultados e uma mensagem com ação para limpar os filtros quando não há nenhum. O painel de detalhes também aparece somente após a seleção de um destino.
+O app mostra cartões ou uma mensagem com ação para limpar os filtros quando não há resultados. Páginas inexistentes e identificadores de destinos inválidos também recebem mensagens apropriadas.
 
-**Se condições não fossem usadas:** a página não poderia adaptar claramente o conteúdo aos resultados da busca ou às ações da pessoa usuária; mensagens vazias e detalhes selecionados precisariam de manipulação manual do DOM.
+**Se condições não fossem usadas:** a página não poderia adaptar claramente o conteúdo aos resultados da busca ou às ações da pessoa usuária; mensagens vazias e estados de erro precisariam de manipulação manual do DOM.
 
 ### 7. Formulários
 
@@ -108,6 +108,7 @@ Rotas disponíveis:
 | `/destinos/:id` | Detalhes compartilháveis de um destino |
 | `/favoritos` | Destinos favoritos |
 | `/roteiro` | Planejador e roteiro salvo |
+| `/sobre` | Informações sobre o projeto |
 
 ## Tecnologias e comparação
 
@@ -126,10 +127,10 @@ Rotas disponíveis:
 ## Acessibilidade e experiência
 
 - Estrutura com cabeçalho, navegação, conteúdo principal, seções e rodapé.
-- Campo de busca com rótulo acessível, botões com estados `aria-pressed` e feedback de resultados com `aria-live`.
+- Navegação entre páginas por links, campo de busca com rótulo acessível, botões com estados `aria-pressed` e feedback com `aria-live`.
 - Campos do planejador com rótulos, validação nativa e apresentação acessível das sugestões.
 - Texto alternativo nas imagens, foco visível e layout responsivo.
-- Favoritos e roteiro persistem no armazenamento local do navegador; filtros e detalhes selecionados são reiniciados ao recarregar. Os dados não são sincronizados entre dispositivos.
+- Favoritos e roteiro persistem no armazenamento local do navegador; filtros são reiniciados ao recarregar. Os dados não são sincronizados entre dispositivos.
 - URLs de destinos e páginas de favoritos/roteiro podem ser abertas diretamente e compartilhadas.
 
 ## Próximas etapas

@@ -15,6 +15,7 @@ export default function SiteHeader({ quantidadeFavoritos }) {
         <NavLink to="/destinos">Destinos</NavLink>
         <NavLink to="/favoritos">Favoritos ({quantidadeFavoritos})</NavLink>
         <NavLink to="/roteiro">Meu roteiro</NavLink>
+        <NavLink to="/sobre">Sobre</NavLink>
       </nav>
     </header>
   );

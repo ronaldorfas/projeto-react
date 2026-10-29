@@ -46,6 +46,7 @@ function DestinationGrid({
   roteiro,
   aoAlternarFavorito,
   aoAdicionarAoRoteiro,
+  aoLimparFiltros,
 }) {
   const navigate = useNavigate();
 
@@ -55,9 +56,15 @@ function DestinationGrid({
         <span aria-hidden="true">⌕</span>
         <h3>Nenhum destino por aqui</h3>
         <p>Experimente ajustar a busca ou os filtros.</p>
-        <Link className="text-link" to="/destinos">
-          Ver todos os destinos <span aria-hidden="true">→</span>
-        </Link>
+        {aoLimparFiltros ? (
+          <button className="text-link" type="button" onClick={aoLimparFiltros}>
+            Limpar filtros <span aria-hidden="true">→</span>
+          </button>
+        ) : (
+          <Link className="text-link" to="/destinos">
+            Ver todos os destinos <span aria-hidden="true">→</span>
+          </Link>
+        )}
       </div>
     );
   }
@@ -185,6 +192,11 @@ function DestinationCatalog({
           roteiro={roteiro}
           aoAlternarFavorito={aoAlternarFavorito}
           aoAdicionarAoRoteiro={aoAdicionarAoRoteiro}
+          aoLimparFiltros={() => {
+            setBusca("");
+            setCategoriaSelecionada("Todas");
+            setSomenteFavoritos(false);
+          }}
         />
       </section>
     </>
@@ -369,6 +381,7 @@ export default function App() {
             path="/destinos"
             element={<DestinationCatalog mostrarHero={false} {...dadosCatalogo} />}
           />
+          <Route path="/sobre" element={<AboutProject />} />
           <Route
             path="/favoritos"
             element={
